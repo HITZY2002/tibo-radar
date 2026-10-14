@@ -1,0 +1,10 @@
+{
+  "name": "tibo-monitor-fetcher",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Puppeteer-core based X tweet fetcher for AstrBot Tibo Monitor plugin",
+  "main": "fetch_tweets.cjs",
+  "dependencies": {
+    "puppeteer-core": "^23.0.0"
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "enable_monitoring": {
+    "name": "启用监控",
+    "description": "是否启用定时轮询监控。先配置 LLM 与通知群，再测试公共 API；Firefox 仅用于可选的深度补漏。",
+    "type": "bool",
+    "default": false
+  },
+  "x_handle": {
+    "name": "监控的 X 用户名",
+    "description": "要监控的 X/Twitter 用户名（不含 @）。默认监控 Tibo (@thsottiaux)。",
+    "type": "string",
+    "default": "thsottiaux"
+  },
+  "use_codex_reset_api": {
+    "name": "使用 Codex Reset 公共 API",
+    "description": "日常轮询优先使用 codex-reset.com 的免密公开数据，减少 Firefox 抓取；API 异常时自动回退本地 X 抓取。",
+    "type": "bool",
+    "default": true
+  },
+  "codex_reset_feed_url": {
+    "name": "Codex Reset Feed 地址",
+    "description": "Codex Reset 公共 JSON Feed。通常无需修改。",
+    "type": "string",
+    "default": "https://codex-reset.com/api/feed"
+  },
+  "firefox_profile_path": {
+    "name": "Firefox Profile 路径",
+    "description": "已登录 X 的 Firefox 配置文件目录路径。留空则自动检测默认 profile。深度回查使用临时登录资料副本，不修改原资料。",
+    "type": "string",
+    "default": ""
+  },
+  "firefox_executable_path": {
+    "name": "Firefox 可执行文件路径",
+    "description": "firefox.exe 的完整路径。留空则自动从注册表/常见路径检测。",
+    "type": "string",
+    "default": ""
+  },
+  "poll_interval_minutes": {
+    "name": "轮询间隔（分钟）",
+    "description": "每隔多少分钟检查一次 X 动态。建议 10~30 分钟，过低可能触发 X 限流。",
+    "type": "int",
+    "default": 15,
+    "min": 5,
+    "max": 120
+  },
+  "fetch_limit": {
+    "name": "每次抓取帖子数",
+    "description": "每轮从 X 抓取的最近帖子数量（含回复）。",
+    "type": "int",
+    "default": 30,
+    "min": 10,
+    "max": 100
+  },
+  "audit_interval_hours": {
+    "name": "本地遗漏回查间隔（小时）",
+    "description": "定期使用本地 X 抓取补查公共 Feed 未覆盖的新模型等公告。API 异常时不会等待此间隔。",
+    "type": "int",
+    "default": 6,
+    "min": 1,
+    "max": 48
+  },
+  "audit_lookback_days": {
+    "name": "遗漏回查天数",
+    "description": "深度回查时核对最近多少天的主帖、回复和长文。",
+    "type": "int",
+    "default": 7,
+    "min": 1,
+    "max": 30
+  },
+  "audit_fetch_limit": {
+    "name": "遗漏回查帖子数",
+    "description": "深度回查时每条 X 时间线最多采集的帖子数量。",
+    "type": "int",
+    "default": 80,
+    "min": 30,
+    "max": 200
+  },
+  "notify_groups": {
+    "name": "提醒的 QQ 群号",
+    "description": "发现重置、新模型、降价、额度调整或补偿公告时发送提醒的 QQ 群号列表，用英文逗号分隔。不使用 @全体成员。",
+    "type": "string",
+    "default": ""
+  },
+  "notify_on_announced": {
+    "name": "预告时提醒",
+    "description": "Tibo 预告即将重置（reset_announced）时发送提醒。",
+    "type": "bool",
+    "default": true
+  },
+  "notify_on_completed": {
+    "name": "完成时提醒",
+    "description": "Tibo 宣布已完成重置（reset_completed）时发送提醒。",
+    "type": "bool",
+    "default": true
+  },
+  "llm_provider_id": {
+    "name": "LLM Provider ID",
+    "description": "用于分类判断的 AstrBot LLM Provider ID。留空则自动使用第一个可用的 CHAT_COMPLETION Provider。",
+    "type": "string",
+    "default": ""
+  },
+  "announced_template": {
+    "name": "预告提醒模板",
+    "description": "reset_announced 时的群消息模板。可用变量：{handle} {summary} {evidence} {url} {translation}",
+    "type": "string",
+    "default": "⚠️ Codex 额度即将重置！\n\nTibo (@{handle}) 已预告重置计划：\n{summary}\n\n原文证据：{evidence}\n中文翻译：{translation}\n\n🔗 {url}\n\n群友们趁重置前赶紧用额度！"
+  },
+  "completed_template": {
+    "name": "完成提醒模板",
+    "description": "reset_completed 时的群消息模板。可用变量：{handle} {summary} {evidence} {url} {translation}",
+    "type": "string",
+    "default": "✅ Codex 额度已重置！\n\nTibo (@{handle}) 宣布重置已完成：\n{summary}\n\n原文证据：{evidence}\n中文翻译：{translation}\n\n🔗 {url}\n\n额度已恢复，大家可以冲了！"
+  },
+  "important_template": {
+    "name": "重要公告提醒模板",
+    "description": "新模型、降价、额度调整和补偿公告的群消息模板。可用变量：{event_label} {handle} {summary} {evidence} {url} {translation}",
+    "type": "string",
+    "default": "{event_label}\n\nTibo (@{handle}) 发布了与 Codex/ChatGPT 使用权益相关的重要消息：\n{summary}\n\n原文证据：{evidence}\n中文翻译：{translation}\n\n🔗 {url}"
+  },
+  "node_executable": {
+    "name": "Node.js 可执行文件路径",
+    "description": "node.exe 的完整路径。留空则使用系统 PATH 中的 node。",
+    "type": "string",
+    "default": ""
+  }
+}
