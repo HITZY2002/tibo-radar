@@ -31,7 +31,7 @@ CMD_PREFIX = "/tibo"
     "HITZY2002",
     "监控 Tibo X 动态，AI 判断 Codex/GPT 重要产品公告并 QQ 群提醒",
     "0.3.0",
-    "https://github.com/HITZY2002/astrbot_plugin_tibo_monitor",
+    "https://github.com/HITZY2002/tibo-radar",
 )
 class TiboMonitorPlugin(Star):
     """Tibo Codex 重要公告监控插件。"""

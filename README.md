@@ -30,7 +30,7 @@
 
 ## 安装
 
-1. 在 AstrBot 插件管理中通过 `https://github.com/HITZY2002/astrbot_plugin_tibo_monitor` 安装，或将插件目录放入 `AstrBot/data/plugins/astrbot_plugin_tibo_monitor/`
+1. 在 AstrBot 插件管理中通过 `https://github.com/HITZY2002/tibo-radar` 安装，或将插件目录放入 `AstrBot/data/plugins/astrbot_plugin_tibo_monitor/`
 2. 如果需要 Firefox 深度回查，安装 Node 依赖；仅使用公共 API 时可跳过：
    ```bash
    cd AstrBot/data/plugins/astrbot_plugin_tibo_monitor/scripts

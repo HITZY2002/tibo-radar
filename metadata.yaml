@@ -2,7 +2,7 @@ name: astrbot_plugin_tibo_monitor
 display_name: Tibo Codex 重要公告监控
 desc: 监控 Tibo (@thsottiaux) 的 X 动态，用 AI 判断 GPT/Codex 重置、新模型、降价、额度调整与补偿公告，并提醒 QQ 群。
 author: HITZY2002
-repo: https://github.com/HITZY2002/astrbot_plugin_tibo_monitor
+repo: https://github.com/HITZY2002/tibo-radar
 version: 0.3.0
 astrbot_version: ">=4.24.2"
 tags:
